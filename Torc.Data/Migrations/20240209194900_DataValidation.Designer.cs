@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Torc.Data;
 
@@ -10,9 +11,11 @@ using Torc.Data;
 namespace Torc.Data.Migrations
 {
     [DbContext(typeof(BookStorageContext))]
-    partial class BookStorageContextModelSnapshot : ModelSnapshot
+    [Migration("20240209194900_DataValidation")]
+    partial class DataValidation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
