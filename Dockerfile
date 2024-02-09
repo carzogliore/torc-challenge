@@ -5,8 +5,12 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
+
+COPY ["Torc.Common/Torc.Common.csproj", "Torc.Common/"]
+COPY ["Torc.Business/Torc.Business.csproj", "Torc.Business/"]
+COPY ["Torc.Data/Torc.Data.csproj", "Torc.Data/"]
 COPY ["Torc.Api/Torc.Api.csproj", "Torc.Api/"]
+
 RUN dotnet restore "Torc.Api/Torc.Api.csproj"
 COPY . .
 WORKDIR "/src/Torc.Api"
