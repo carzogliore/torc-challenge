@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 
-const Books = () => {
+function Books() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchCategory, setSearchCategory] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -10,7 +10,11 @@ const Books = () => {
     e.preventDefault();
     // Perform search operation (for demonstration, let's just set some dummy data)
 
-    const url = `$http://localhost:5260/books/get-books?${searchCategory}=${searchTerm}`;
+    const url = 'http://localhost:5260/books/get-books';
+
+    if (searchCategory) {
+      url += `?${searchCategory}=${searchTerm}`
+    }
 
     axios.get(url).then((response) => {
       setSearchResults(response.data);
