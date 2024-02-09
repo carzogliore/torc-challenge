@@ -10,7 +10,7 @@ function Books() {
     e.preventDefault();
     // Perform search operation (for demonstration, let's just set some dummy data)
 
-    const url = 'http://localhost:5260/books/get-books';
+    let url = 'http://localhost:5260/books/get-books';
 
     if (searchCategory) {
       url += `?${searchCategory}=${searchTerm}`
@@ -58,14 +58,14 @@ function Books() {
           </thead>
           <tbody>
             {searchResults.map(result => (
-              <tr key={result.Id}>
-                <td>{result.Title}</td>
-                <td>{result.Publisher}</td>
-                <td>{result.Author}</td>
-                <td>{result.Type}</td>
-                <td>{result.ISBN}</td>
-                <td>{result.Category}</td>
-                <td>`${result.TotalCopies} \ ${result.CopiesInUse}`</td>
+              <tr key={result.id}>
+                <td>{result.title}</td>
+                <td>{result.publisher}</td>
+                <td>{result.author}</td>
+                <td>{result.type}</td>
+                <td>{result.isbn}</td>
+                <td>{result.category}</td>
+                <td>{result.copiesInUse} \ {result.totalCopies}</td>
               </tr>
             ))}
           </tbody>

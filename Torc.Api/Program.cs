@@ -5,6 +5,17 @@ using Torc.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "webapp",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -18,6 +29,8 @@ builder.Services.AddDbContext<BookStorageContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
+
+app.UseCors("webapp");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
